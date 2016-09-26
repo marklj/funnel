@@ -1,0 +1,13 @@
+{
+    "name": "marklj/funnel",
+    "description": "A catch-all controller (for Laravel).",
+    "authors": [
+        {
+            "name": "Mark Johnson",
+            "email": "marklj@gmail.com"
+        }
+    ],
+    "require": {
+        "beberlei/assert": "^2.6"
+    }
+}
