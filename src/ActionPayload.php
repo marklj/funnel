@@ -1,6 +1,6 @@
 <?php namespace Marklj\Funnel;
 
-class ActionPayload implements \ArrayAccess
+class ActionPayload implements \ArrayAccess, \Countable
 {
 
     /**
@@ -91,5 +91,19 @@ class ActionPayload implements \ArrayAccess
     public function offsetUnset($offset)
     {
         throw new \Exception('Can not modify payload');
+    }
+
+    /**
+     * Count elements of an object
+     * @link  http://php.net/manual/en/countable.count.php
+     * @return int The custom count as an integer.
+     * </p>
+     * <p>
+     * The return value is cast to an integer.
+     * @since 5.1.0
+     */
+    public function count()
+    {
+        return count($this->payload);
     }
 }
