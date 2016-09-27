@@ -27,7 +27,7 @@ The `command` request parameter is required and is automatically converted to St
 </form> 
 ```
 
-Note that the payload only needs to contained in a `payload[]` array if you want to filter exactly what data get passed to your action. If you choose to not namespace your inputs like (ex. `name="blog_title"`), all of your input data will be passed to your action.
+Note that the payload only needs to contained in a `payload[]` array if you want to filter exactly what data get passed to your action. If you choose to not namespace your inputs like `name="blog_title"`, all of your input data will be passed to your action.
 
 ### 2. Map to an Action
 Funnel will try to associate the StudlyCase command, in this case `PostBlog`, to an action. This association is made in the `funnel.php` configuration file.
