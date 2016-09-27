@@ -61,3 +61,5 @@ class PostAction implements Actionable
     }
 }
 ```
+
+Since the action is instantiated using Laravel's IoC container, you are free to inject any dependancies into your action via the constructor.
