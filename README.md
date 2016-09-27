@@ -33,14 +33,13 @@ Funnel will try to associate the StudlyCase command, in this case `PostBlog`, to
 ```php
 // config/funnel.php
 [
-    /** 
-        other config params
-     */
-     'action_mappings' => [
+    // other config options
+    
+    'action_mappings' => [
         'PostBlog' => 'App/Blog/Actions/PostAction,
         
         // other mappings here
-     ]
+    ]
 ]
 ```
 
