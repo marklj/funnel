@@ -12,7 +12,7 @@ class FunnelServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__.'/config/funnel.php' => config_path('courier.php'),
+            __DIR__.'/config/funnel.php' => config_path('funnel.php'),
         ]);
     }
 
