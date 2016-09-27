@@ -36,7 +36,7 @@ Funnel will try to associate the StudlyCase command, in this case `PostBlog`, to
     // other config options
     
     'action_mappings' => [
-        'PostBlog' => 'App/Blog/Actions/PostAction',
+        'PostBlog' => \App\Blog\ActionsPostAction:class,
         
         // other mappings here
     ]
