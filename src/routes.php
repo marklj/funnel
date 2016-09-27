@@ -1,5 +1,5 @@
 <?php
 
-Route::post('mailbox', [
+Route::post(config('funnel.uri', 'mailbox'), [
     'uses' => '\Marklj\Funnel\ActionController'
-])->name('mailbox');
+])->name(config('funnel.route_name', 'funnel.mailbox'));

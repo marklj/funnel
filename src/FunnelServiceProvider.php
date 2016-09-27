@@ -10,6 +10,10 @@ class FunnelServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             require __DIR__.'/routes.php';
         }
+
+        $this->publishes([
+            __DIR__.'/config/funnel.php' => config_path('courier.php'),
+        ]);
     }
 
 }

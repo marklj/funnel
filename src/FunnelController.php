@@ -19,7 +19,7 @@ class FunnelController
         $command = $this->convertToStudlyCase(request()->get('command'));
         $payload = $this->gatherPayload(request()->all());
 
-        $controller = collect(config('commands.controller_routes'))->get($command);
+        $controller = collect(config('funnel.action_mappings'))->get($command);
 
         if ($controller) {
             return $this->execute($controller, $payload);
