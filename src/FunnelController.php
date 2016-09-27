@@ -1,6 +1,7 @@
 <?php namespace Marklj\Funnel;
 
 use Assert\Assertion;
+use Illuminate\Support\Collection;
 
 class FunnelController
 {
@@ -11,10 +12,12 @@ class FunnelController
      * @return mixed
      * @throws \Exception
      */
-    public function __invoke(ActionRequest $request)
+    public function __invoke()
     {
-        $command = studly_case($request->get('command'));
-        $payload = $this->gatherPayload($request->all());
+        $this->validateInput(request());
+
+        $command = $this->convertToStudlyCase(request()->get('command'));
+        $payload = $this->gatherPayload(request()->all());
 
         $controller = collect(config('commands.controller_routes'))->get($command);
 
@@ -38,12 +41,27 @@ class FunnelController
 
     private function gatherPayload($payload_array)
     {
-        if (collect($payload_array)->contains('payload')) {
+        if (collect($payload_array)->has('payload')) {
             return $payload_array['payload'];
         }
         return collect($payload_array)
             ->except(['command', '_token'])
             ->toArray();
+    }
+
+    private function validateInput($request)
+    {
+        Assertion::keyExists($request->toArray(), 'command', 'GET/POST data must contain `command` item');
+        Assertion::string($request->get('command'));
+        if($request->has('payload')) {
+            Assertion::isArray($request->get('payload'));
+        }
+    }
+
+    private function convertToStudlyCase($string)
+    {
+        $value = ucwords(str_replace(['-', '_'], ' ', $string));
+        return str_replace(' ', '', $value);
     }
 
 }
