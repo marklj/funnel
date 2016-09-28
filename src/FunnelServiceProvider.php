@@ -4,7 +4,6 @@ use Illuminate\Support\ServiceProvider;
 
 class FunnelServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
         if (! $this->app->routesAreCached()) {
@@ -15,5 +14,4 @@ class FunnelServiceProvider extends ServiceProvider
             __DIR__.'/config/funnel.php' => config_path('funnel.php'),
         ]);
     }
-
 }

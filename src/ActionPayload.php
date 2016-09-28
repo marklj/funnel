@@ -8,16 +8,30 @@ class ActionPayload implements \ArrayAccess, \Countable
      */
     private $payload = [];
 
+    /**
+     * ActionPayload constructor.
+     *
+     * @param array $payload
+     */
     public function __construct(array $payload)
     {
         $this->payload = $payload;
     }
 
+    /**
+     * @param      $key
+     * @param null $default
+     *
+     * @return string|null
+     */
     public function get($key, $default = null)
     {
         return array_key_exists($key, $this->payload) ? $this->payload[$key] : $default;
     }
 
+    /**
+     * @return array
+     */
     public function all()
     {
         return $this->payload;

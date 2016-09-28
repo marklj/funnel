@@ -6,9 +6,8 @@ use Illuminate\Support\Collection;
 class FunnelController
 {
 
+
     /**
-     * @param \Marklj\Funnel\ActionRequest $request
-     *
      * @return mixed
      * @throws \Exception
      */
@@ -28,6 +27,12 @@ class FunnelController
         throw new \Exception("Invalid command provided [$command]");
     }
 
+    /**
+     * @param $controller
+     * @param $payload
+     *
+     * @return mixed
+     */
     private function execute($controller, $payload)
     {
         $class = app($controller);
@@ -39,6 +44,11 @@ class FunnelController
         return $class(new ActionPayload($payload));
     }
 
+    /**
+     * @param $payload_array
+     *
+     * @return array
+     */
     private function gatherPayload($payload_array)
     {
         if (collect($payload_array)->has('payload')) {
@@ -49,19 +59,26 @@ class FunnelController
             ->toArray();
     }
 
+    /**
+     * @param $request
+     */
     private function validateInput($request)
     {
         Assertion::keyExists($request->toArray(), 'command', 'GET/POST data must contain `command` item');
         Assertion::string($request->get('command'));
-        if($request->has('payload')) {
+        if ($request->has('payload')) {
             Assertion::isArray($request->get('payload'));
         }
     }
 
+    /**
+     * @param $string
+     *
+     * @return string
+     */
     private function convertToStudlyCase($string)
     {
         $value = ucwords(str_replace(['-', '_'], ' ', $string));
         return str_replace(' ', '', $value);
     }
-
 }
